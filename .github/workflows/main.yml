@@ -18,10 +18,10 @@ jobs:
           version: "0.4.10"
 
       - name: Run uv lock
-        run: uv lock
+        run: uv lock --verbose
 
       - name: Run uv sync --extra build
-        run: uv sync --extra build
+        run: uv sync --extra build --verbose
       
       - name: Run uv sync --extra run
-        run: uv sync --extra run
+        run: uv sync --extra run --verbose
