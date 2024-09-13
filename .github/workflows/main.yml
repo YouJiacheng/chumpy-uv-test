@@ -1,1 +1,27 @@
+name: Main
 
+on:
+  workflow_dispatch:
+
+jobs:
+  chumpy-uv-test:
+    name: python
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
+        with:
+          # Install a specific version of uv.
+          version: "0.4.10"
+
+      - name: Run uv lock
+        run: uv lock
+
+      - name: Run uv sync --extra build
+        run: uv sync --extra build
+      
+      - name: Run uv sync --extra run
+        run: uv sync --extra run
