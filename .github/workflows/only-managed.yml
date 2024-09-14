@@ -17,8 +17,8 @@ jobs:
           # Install a specific version of uv.
           version: "0.4.10"
       
-      - name: Run uv venv --python 3.12
-        run: uv venv --python 3.12 --verbose
+      - name: Run uv python install 3.10
+        run: uv python install 3.10 --verbose
 
       - name: Run uv lock --python-preference only-managed
         run: uv lock --python-preference only-managed --verbose
