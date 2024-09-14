@@ -1,0 +1,30 @@
+name: Only-Managed
+
+on:
+  workflow_dispatch:
+
+jobs:
+  chumpy-uv-test:
+    name: python
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
+        with:
+          # Install a specific version of uv.
+          version: "0.4.10"
+      
+      - name: Run uv venv --python 3.12
+        run: uv venv --python 3.12 --verbose
+
+      - name: Run uv lock --python-preference only-managed
+        run: uv lock --python-preference only-managed --verbose
+
+      - name: Run uv sync --extra build
+        run: uv sync --extra build --verbose
+      
+      - name: Run uv sync --extra run
+        run: uv sync --extra run --verbose
